@@ -34,6 +34,9 @@ function loadData() {
               headline+'</a><p>'+lead_paragraph+'</p></li>');
       })
       $('#nytimes-articles').append(items);
+    }).fail(function(){
+      var errorMsg = "New York Times Articles Could Not Be Loaded";
+      $('#nytimes-articles').append(errorMsg);
     })
     return false;
 };
