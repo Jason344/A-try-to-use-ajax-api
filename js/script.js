@@ -34,7 +34,6 @@ function loadData() {
               headline+'</a><p>'+lead_paragraph+'</p></li>');
       })
       $('#nytimes-articles').append(items);
-      console.log(docs);
     })
     return false;
 };
