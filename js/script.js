@@ -22,8 +22,9 @@ function loadData() {
 
     // Search article from New York Times
     var urlSearch = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-    urlSearch += "?q="+location;
+    urlSearch += "?q="+location+'&sort=newest&api-key=56de635e04ae45998dab5ca698a84975';
     $.getJSON(urlSearch,function(data){
+      $nytHeaderElem.text('New York Times Articles About '+city);
       var items = [];
       var docs = data["response"]["docs"];
       $.each(docs,function(key,val){
@@ -33,12 +34,13 @@ function loadData() {
           items.push('<li class="article"><a href="'+urlArticle+'">'+
               headline+'</a><p>'+lead_paragraph+'</p></li>');
       })
-      $('#nytimes-articles').append(items);
+      $nytElem.append(items);
     }).fail(function(){
       var errorMsg = "New York Times Articles Could Not Be Loaded";
-      $('#nytimes-articles').append(errorMsg);
+      $nytElem.append(errorMsg);
     })
     return false;
+
 };
 
 $('#form-container').submit(loadData);
